@@ -83,12 +83,16 @@ STATICFILES_DIRS = [
 WSGI_APPLICATION = 'django_react.wsgi.application'
 
 #logger
-with open(str(BASE_DIR) + '\log_config.yml', 'r', encoding='utf-8') as f:
-    file = f.read()
-    config = yaml.load(file, Loader=yaml.FullLoader)
+def logConfig():
 
-logging.config.dictConfig(config)
-logger = logging.getLogger('simple')
+    with open(str(BASE_DIR) + '\log_config.yml', 'r', encoding='utf-8') as f:
+        file = f.read()
+        config = yaml.load(file, Loader=yaml.FullLoader)
+
+    logging.config.dictConfig(config)
+    logger = logging.getLogger('simple')
+
+    return logger
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
