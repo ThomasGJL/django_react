@@ -18,7 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from django.views.generic.base import TemplateView
 
+from graphene_django.views import GraphQLView
+from .schema import schema
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'', TemplateView.as_view(template_name="react/index.html"))
+    url(r'index/', TemplateView.as_view(template_name="react/index.html")),
+    path('graphql/', GraphQLView.as_view(graphiql=True, schema=schema)),
 ]
